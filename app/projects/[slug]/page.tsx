@@ -18,8 +18,8 @@ export function generateStaticParams() {
 export default async function ProjectPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const project = profile.projects.find((p) => p.slug === resolvedParams.slug);
-  if (!project) return notFound();
-  const imageSrc = project.image || projectImageFallback[project.slug];
+  if (!project) notFound();
+  const imageSrc = project.image || projectImageFallback[resolvedParams.slug];
 
   const { github, demo, writeup } = project.links;
 
