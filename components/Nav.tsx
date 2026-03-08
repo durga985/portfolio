@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { profile } from "@/data/profile";
 import { Code2 } from "lucide-react";
 
@@ -8,12 +7,14 @@ const links = [
   { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
+  { href: "#achievements", label: "Achievements" },
   { href: "#contact", label: "Contact" },
 ];
 
 export function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/40 bg-white/75 backdrop-blur-md transition-all duration-300 dark:border-zinc-800/40 dark:bg-zinc-950/75">
+    <header className="sticky top-0 z-50 bg-white/75 backdrop-blur-md transition-all duration-300 dark:bg-zinc-950/75">
       <Container className="flex items-center justify-between py-4">
         {/* Logo */}
         <Link href="/" className="no-underline group">
@@ -31,7 +32,7 @@ export function Nav() {
         </Link>
 
         {/* Center nav links - hidden on mobile */}
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center justify-end gap-1 ml-auto">
           {links.map((l) => (
             <a
               key={l.href}
@@ -43,16 +44,6 @@ export function Nav() {
           ))}
         </nav>
 
-        {/* Right side actions */}
-        <div className="flex items-center gap-2.5">
-          <a
-            href={`mailto:${profile.email}`}
-            className="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-zinc-900 bg-zinc-100 rounded-lg hover:bg-zinc-200 transition dark:text-white dark:bg-zinc-800 dark:hover:bg-zinc-700"
-          >
-            Contact
-          </a>
-          <ThemeToggle />
-        </div>
       </Container>
     </header>
   );

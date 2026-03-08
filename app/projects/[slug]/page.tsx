@@ -4,13 +4,22 @@ import { profile } from "@/data/profile";
 import { Container } from "@/components/Container";
 import { Badge } from "@/components/Badge";
 
+const projectImageFallback: Record<string, string> = {
+  "optimized-rag-enterprise-knowledge": "/projects/rag-system.svg",
+  "ai-job-analyzer": "/projects/ai-job-analyzer.svg",
+  "topic-modeling-text-mining": "/projects/topic-modeling.svg",
+  "automatic-door-access-face-recognition": "/projects/face-access.svg",
+};
+
 export function generateStaticParams() {
   return profile.projects.map((p) => ({ slug: p.slug }));
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = profile.projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const project = profile.projects.find((p) => p.slug === resolvedParams.slug);
   if (!project) return notFound();
+  const imageSrc = project.image || projectImageFallback[project.slug];
 
   const { github, demo, writeup } = project.links;
 
@@ -24,6 +33,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-soft dark:border-zinc-800 dark:bg-zinc-950">
+          {imageSrc ? (
+            <div className="mb-6 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+              <img src={imageSrc} alt={project.name} className="h-64 w-full object-cover" />
+            </div>
+          ) : null}
+
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h1 className="text-3xl font-semibold tracking-tight">{project.name}</h1>

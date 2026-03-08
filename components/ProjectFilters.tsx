@@ -102,7 +102,7 @@ export function ProjectFilters() {
       <div className="grid gap-4 sm:grid-cols-2">
         {filtered.length > 0 ? (
           filtered.map((p: Project) => (
-            <ProjectCard key={p.slug} slug={p.slug} name={p.name} tagline={p.tagline} stack={p.stack} />
+            <ProjectCard key={p.slug} slug={p.slug} name={p.name} tagline={p.tagline} image={p.image} stack={p.stack} />
           ))
         ) : (
           <div className="col-span-full rounded-xl border border-zinc-200 bg-zinc-50 p-8 text-center dark:border-zinc-800 dark:bg-zinc-900">

@@ -22,7 +22,7 @@ export const techIcons: Record<string, string> = {
   "SQL": "Database",
   "ORACLE": "Database",
   "MongoDB": "Database",
-  "Tableau": "BarChart3",
+  
   "Power BI": "BarChart3",
   "Git": "GitBranch",
   "Gerrit": "GitBranch",
@@ -40,7 +40,7 @@ export const profile = {
   "name": "Durga Phani Teja Pasupuleti",
   "location": "Binghamton, NY",
   "phone": "+1 (607) 595-9637",
-  "email": "dpasupuleti@binghamton.edu",
+  "email": "durgaphaniteja.binghamton@gmail.com",
   "linkedin": "phaniteja-pasupuleti",
   "headline": "Software Developer \u2022 M.S. Computer Science @ Binghamton (May 2026)",
   "summary": "M.S. Computer Science student (Expected May 2026) with 3+ years of industry experience as a Developer at TCS. I build AI-driven applications and automation-friendly systems using Python, AWS, and modern DevOps tooling.",
@@ -102,7 +102,7 @@ export const profile = {
       "SQL",
       "ORACLE",
       "MongoDB",
-      "Tableau",
+      
       "Power BI"
     ],
     "DevOps & Tools": [
@@ -149,23 +149,23 @@ export const profile = {
   ],
   "projects": [
     {
-      "slug": "ai-job-analyzer",
-      "name": "AI-Job-Analyzer",
-      "tagline": "AI-powered resume screening & job intelligence platform",
+      "slug": "optimized-rag-enterprise-knowledge",
+      "name": "Optimized Retrieval-Augmented Generation (RAG) System for Enterprise Knowledge Bases",
+      "tagline": "Python · FAISS · LlamaIndex · HuggingFace · Sentence-Transformers · Cross-Encoder Reranking · Streamlit",
+      "image": "/projects/rag-system.svg",
       "stack": [
         "Python",
-        "Sentence-BERT",
-        "Streamlit",
-        "Playwright",
-        "AWS EC2",
-        "Terraform",
-        "Application Load Balancer"
+        "FAISS",
+        "LlamaIndex",
+        "HuggingFace",
+        "Sentence-Transformers",
+        "Cross-Encoder Reranking",
+        "Streamlit"
       ],
       "highlights": [
-        "Evaluates semantic similarity between resumes and job descriptions using Sentence-BERT.",
-        "Extracts real-time job listings via LinkedIn scraping with Playwright for dynamic matching.",
-        "Automates cloud deployment with Terraform; hosted on AWS EC2 behind an Application Load Balancer for fault tolerance.",
-        "Detects missing skill keywords to improve candidate\u2013job alignment and interview readiness."
+        "Built an end-to-end RAG pipeline over 6,000+ documents, enabling grounded enterprise QA with citation support.",
+        "Conducted embedding and retrieval ablations (MiniLM, BGE, E5, chunking, depth), improving answer accuracy by 10%.",
+        "Reduced hallucination by 15% via hybrid retrieval and cross-encoder reranking while maintaining 1.6s p95 latency; implemented evaluation framework measuring Recall@k, MRR, and grounded accuracy."
       ],
       "links": {
         "github": "",
@@ -174,19 +174,24 @@ export const profile = {
       }
     },
     {
-      "slug": "automatic-door-access-face-recognition",
-      "name": "Automatic Door Access Using Facial Recognition",
-      "tagline": "Face-recognition powered door access prototype",
+      "slug": "ai-job-analyzer",
+      "name": "AI-Job-Analyzer",
+      "tagline": "AI-Powered Resume Screening & Job Intelligence Platform",
+      "image": "/projects/ai-job-analyzer.svg",
       "stack": [
         "Python",
-        "Facial recognition",
-        "Computer Vision"
+        "Sentence-BERT",
+        "Transformers",
+        "AWS EC2",
+        "Terraform",
+        "Streamlit",
+        "Playwright"
       ],
       "highlights": [
-        "Generated and processed facial data from storage to support recognition workflows.",
-        "Improved performance through debugging and optimization; applied quality checks for reliability.",
-        "Coordinated with stakeholders on project status and issue resolution.",
-        "Explored new facial recognition techniques to identify improvement opportunities."
+        "Designed and deployed an end-to-end NLP system to compute semantic similarity between resumes and job descriptions using Sentence-BERT embeddings.",
+        "Built real-time job scraping pipelines with Playwright to dynamically match candidate profiles to live job postings.",
+        "Provisioned and deployed scalable cloud infrastructure on AWS EC2 using Terraform and load balancing for fault tolerance.",
+        "Implemented keyword gap analysis to identify missing technical skills and enhance resume-job alignment."
       ],
       "links": {
         "github": "",
@@ -197,17 +202,38 @@ export const profile = {
     {
       "slug": "topic-modeling-text-mining",
       "name": "Topic Modeling using Deep Learning through Text Mining",
-      "tagline": "Deep learning + NLP pipeline for unstructured text analysis",
+      "tagline": "Python · NLP · Deep Learning",
+      "image": "/projects/topic-modeling.svg",
       "stack": [
         "Python",
         "NLP",
-        "Deep Learning",
-        "Text Mining"
+        "Deep Learning"
       ],
       "highlights": [
-        "Researched and selected appropriate software/technologies for the modeling pipeline.",
-        "Developed code to analyze unstructured text and extract topics.",
-        "Reported and tracked issues during development and evaluation."
+        "Implemented topic modelling on large-scale unstructured text data to extract meaningful document clusters.",
+        "Applied deep learning-based text embeddings to improve semantic grouping and topic coherence.",
+        "Performed exploratory data analysis and model evaluation to validate interpretability and clustering performance."
+      ],
+      "links": {
+        "github": "",
+        "demo": "",
+        "writeup": ""
+      }
+    },
+    {
+      "slug": "automatic-door-access-face-recognition",
+      "name": "Automatic Door Access Using Facial Recognition",
+      "tagline": "Python · OpenCV · NumPy",
+      "image": "/projects/face-access.svg",
+      "stack": [
+        "Python",
+        "OpenCV",
+        "NumPy"
+      ],
+      "highlights": [
+        "Developed a facial recognition pipeline for secure access control using image preprocessing and feature extraction.",
+        "Optimized image processing workflows to enhance recognition performance and system efficiency.",
+        "Evaluated facial recognition algorithms and improved model robustness through iterative testing."
       ],
       "links": {
         "github": "",

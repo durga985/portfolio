@@ -4,19 +4,30 @@ import { TechIcon } from "@/components/TechIcon";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
+const projectImageFallback: Record<string, string> = {
+  "optimized-rag-enterprise-knowledge": "/projects/rag-system.svg",
+  "ai-job-analyzer": "/projects/ai-job-analyzer.svg",
+  "topic-modeling-text-mining": "/projects/topic-modeling.svg",
+  "automatic-door-access-face-recognition": "/projects/face-access.svg",
+};
+
 export function ProjectCard({
   slug,
   name,
   tagline,
+  image,
   stack,
   className,
 }: {
   slug: string;
   name: string;
   tagline: string;
+  image?: string;
   stack: readonly string[];
   className?: string;
 }) {
+  const imageSrc = image || projectImageFallback[slug];
+
   return (
     <Link
       href={`/projects/${slug}`}
@@ -29,6 +40,12 @@ export function ProjectCard({
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-500 pointer-events-none" />
       
       <div className="relative z-10">
+        {imageSrc ? (
+          <div className="mb-4 overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <img src={imageSrc} alt={name} className="h-44 w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
+          </div>
+        ) : null}
+
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <h3 className="text-lg font-semibold tracking-tight text-zinc-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 transition duration-300">{name}</h3>

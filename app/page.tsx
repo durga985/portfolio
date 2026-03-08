@@ -1,3 +1,5 @@
+"use client";
+
 import { profile } from "@/data/profile";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
@@ -10,24 +12,84 @@ import { StatCard } from "@/components/StatCard";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CTACard } from "@/components/CTACard";
 import { Button } from "@/components/Button";
-import { TestimonialCard } from "@/components/TestimonialCard";
 import { TimelineItem } from "@/components/TimelineItem";
-import { BackgroundEffects } from "@/components/BackgroundEffects";
 import { Sparkles, Code, Zap, BookOpen, Brain, Cpu, Rocket, TrendingUp, ArrowRight, Github, Linkedin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
-  return (
-    <main>
-      {/* Hero with Gradient Background */}
-      <section className="relative overflow-hidden py-20 sm:py-32 md:py-40">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900" />
-        
-        {/* Animated blob shapes */}
-        <div className="absolute -top-40 right-0 h-96 w-96 bg-blue-200 opacity-30 blur-3xl dark:bg-blue-900 dark:opacity-10 rounded-full animate-pulse" />
-        <div className="absolute bottom-0 left-0 h-96 w-96 bg-purple-200 opacity-30 blur-3xl dark:bg-purple-900 dark:opacity-10 rounded-full animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 h-80 w-80 bg-pink-200 opacity-20 blur-3xl dark:bg-pink-900 dark:opacity-5 rounded-full animate-pulse" />
+  const fullTypedName = "Durga Phani Teja Pasupuleti";
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [typedName, setTypedName] = useState("");
+  const [isHeroInView, setIsHeroInView] = useState(true);
+  const heroSectionRef = useRef<HTMLElement | null>(null);
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowWelcome(false), 1800);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const heroEl = heroSectionRef.current;
+    if (!heroEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroInView(entry.isIntersecting);
+      },
+      { threshold: 0.55 }
+    );
+
+    observer.observe(heroEl);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isHeroInView) return;
+
+    setTypedName("");
+    let index = 0;
+    const typingTimer = window.setInterval(() => {
+      index += 1;
+      setTypedName(fullTypedName.slice(0, index));
+      if (index >= fullTypedName.length) {
+        window.clearInterval(typingTimer);
+      }
+    }, 90);
+
+    return () => window.clearInterval(typingTimer);
+  }, [fullTypedName, isHeroInView]);
+
+  return (
+    <main className="relative overflow-hidden bg-white dark:bg-zinc-950">
+      {showWelcome && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/95 backdrop-blur-sm">
+          <div className="mx-4 max-w-xl rounded-2xl border border-zinc-800 bg-zinc-900/90 p-8 text-center shadow-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Welcome</p>
+            <h1 className="mt-3 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl animate-pulse">
+              {profile.name}
+            </h1>
+            <p className="mt-3 text-sm text-zinc-300">Loading your interactive portfolio pages...</p>
+            <button
+              type="button"
+              onClick={() => setShowWelcome(false)}
+              className="mt-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+            >
+              Enter
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900" />
+        <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-blue-200 opacity-30 blur-3xl animate-pulse dark:bg-blue-900 dark:opacity-10" />
+        <div className="absolute top-[30%] left-[10%] h-80 w-80 rounded-full bg-purple-200 opacity-25 blur-3xl animate-pulse dark:bg-purple-900 dark:opacity-10" />
+        <div className="absolute top-[60%] right-[15%] h-80 w-80 rounded-full bg-pink-200 opacity-20 blur-3xl animate-pulse dark:bg-pink-900 dark:opacity-5" />
+        <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-purple-200 opacity-30 blur-3xl animate-pulse dark:bg-purple-900 dark:opacity-10" />
+      </div>
+
+      {/* Hero with Gradient Background */}
+      <section ref={heroSectionRef} className="pt-4 pb-16 sm:pt-8 sm:pb-24 md:pt-10 md:pb-28">
         <Container>
           <div className="relative z-10 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             {/* Left side - Main content */}
@@ -37,9 +99,10 @@ export default function HomePage() {
                 <Badge className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 animate-bounce-in">{profile.headline}</Badge>
               </div>
 
-              <div>
-                <h1 className="text-6xl sm:text-7xl font-bold tracking-tight leading-tight bg-gradient-to-r from-zinc-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-fade-in-up">
-                  {profile.name}
+              <div className="animate-fade-in-up">
+                <h1 className="pb-2 text-6xl sm:text-7xl font-sans font-bold tracking-tight leading-[1.15] bg-gradient-to-r from-zinc-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-text-gradient">
+                  {typedName}
+                  <span className="ml-1 inline-block animate-pulse">|</span>
                 </h1>
               </div>
 
@@ -57,21 +120,7 @@ export default function HomePage() {
                 </Button>
               </div>
 
-              {/* Contact info */}
-              <div className="flex flex-wrap gap-6 text-sm pt-8 border-t border-zinc-200 dark:border-zinc-800 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-                <div>
-                  <p className="text-zinc-600 dark:text-zinc-400 mb-1">Email</p>
-                  <a href={`mailto:${profile.email}`} className="font-semibold text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">
-                    {profile.email}
-                  </a>
-                </div>
-                <div>
-                  <p className="text-zinc-600 dark:text-zinc-400 mb-1">LinkedIn</p>
-                  <a href={`https://www.linkedin.com/in/${profile.linkedin}`} target="_blank" rel="noreferrer" className="font-semibold text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">
-                    View Profile
-                  </a>
-                </div>
-              </div>
+
             </div>
 
             {/* Right side - Profile Photo */}
@@ -98,28 +147,11 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Skills Section with New Visualization */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="blue-purple" opacity="light" />
-        <div className="relative z-10">
-          <ScrollReveal animation="fadeInUp">
-            <Section id="skills" title="Technical Skills" subtitle="Languages, frameworks, and tools I use daily.">
-              <div className="rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-8 shadow-lg dark:border-zinc-800 dark:from-zinc-900 dark:to-zinc-950">
-                <SkillsVisualization />
-              </div>
-            </Section>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* Stats Section */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="purple-pink" opacity="medium" />
-        <div className="relative z-10">
-          <ScrollReveal animation="fadeInUp" delay={0}>
-            <Section id="stats" title="By The Numbers" subtitle="Impact and metrics that matter.">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
+          <Container>
+            <ScrollReveal animation="fadeInUp" delay={0}>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <StatCard
                   icon={<TrendingUp size={20} />}
@@ -130,7 +162,7 @@ export default function HomePage() {
                 <StatCard
                   icon={<Code size={20} />}
                   label="Projects Completed"
-                  value="3+"
+                  value="4+"
                   description="Full-stack applications"
                 />
                 <StatCard
@@ -140,16 +172,27 @@ export default function HomePage() {
                   description="Production systems"
                 />
               </div>
+            </ScrollReveal>
+          </Container>
+        </div>
+      </section>
+
+      {/* Skills Section with New Visualization */}
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
+          <ScrollReveal animation="fadeInUp">
+            <Section id="skills" title="Technical Skills" subtitle="Languages, frameworks, and tools I use daily.">
+              <div className="rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-8 shadow-lg dark:border-zinc-800 dark:from-zinc-900 dark:to-zinc-950">
+                <SkillsVisualization />
+              </div>
             </Section>
           </ScrollReveal>
         </div>
       </section>
 
       {/* Services / Expertise Section */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="blue-pink" opacity="light" />
-        <div className="relative z-10">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={50}>
             <Section id="expertise" title="Core Expertise" subtitle="What I specialize in and can deliver.">
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -169,7 +212,7 @@ export default function HomePage() {
                   icon={<Code size={24} />}
                   title="Data & Databases"
                   description="Data management and visualization with SQL, NoSQL, and enterprise tools."
-                  features={["SQL, ORACLE, MongoDB", "Tableau, Power BI", "Data Analytics", "ETL Pipelines"]}
+                  features={["SQL, ORACLE, MongoDB", "Power BI", "Data Analytics"]}
                 />
               </div>
             </Section>
@@ -178,10 +221,8 @@ export default function HomePage() {
       </section>
 
       {/* Projects */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="purple-pink" opacity="light" />
-        <div className="relative z-10">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={100}>
             <Section id="projects" title="Featured Projects" subtitle="Selected work. Click a project to see details.">
               <ProjectFilters />
@@ -191,10 +232,8 @@ export default function HomePage() {
       </section>
 
       {/* Experience */}
-      <section className="relative overflow-hidden py-6 sm:py-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950" />
-        <BackgroundEffects variant="blue-purple" opacity="light" />
-        <div className="relative z-10">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={200}>
             <Section id="experience" title="Professional Experience" subtitle="Industry roles and impact.">
               <div className="space-y-4">
@@ -226,10 +265,8 @@ export default function HomePage() {
       </section>
 
       {/* Education */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="blue-pink" opacity="medium" />
-        <div className="relative z-10">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={300}>
             <Section id="education" title="Education" subtitle="Academic background and relevant coursework.">
               <div className="grid gap-4">
@@ -261,55 +298,19 @@ export default function HomePage() {
       </section>
 
       {/* Achievements & Certifications */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="purple-pink" opacity="light" />
-        <div className="relative z-10">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={400}>
-            <Section title="Achievements & Recognition" subtitle="Notable accomplishments and credentials.">
+            <Section id="achievements" title="Achievements & Recognition" subtitle="Notable accomplishments and credentials.">
               <AchievementsSection />
             </Section>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="blue-purple" opacity="medium" />
-        <div className="relative z-10">
-          <ScrollReveal animation="fadeInUp" delay={450}>
-            <Section title="What Others Say" subtitle="Feedback from colleagues and collaborators.">
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <TestimonialCard
-                  quote="Durga is an exceptional developer with deep expertise in AI and cloud technologies. Their contributions to our projects were invaluable."
-                  author="Rajesh Kumar"
-                  role="Tech Lead"
-                  company="TCS"
-                />
-                <TestimonialCard
-                  quote="Outstanding problem-solving skills and commitment to clean code. Highly recommend for any challenging projects requiring technical excellence."
-                  author="Priya Sharma"
-                  role="Project Manager"
-                  company="Cloud Innovations"
-                />
-                <TestimonialCard
-                  quote="Brings innovative solutions to complex problems. Great team player with excellent communication and leadership qualities."
-                  author="Arun Patel"
-                  role="Senior Engineer"
-                  company="DevOps Systems"
-                />
-              </div>
-            </Section>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* CTA Section - Work Together */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="multi" opacity="medium" />
-        <div className="relative z-10">
+      <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={500}>
             <Section title="Ready to Collaborate?" subtitle="Let's discuss your next project or opportunity.">
               <div className="grid gap-6 lg:grid-cols-2">
@@ -336,10 +337,8 @@ export default function HomePage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="relative overflow-hidden py-6 sm:py-8 -mt-px">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950" />
-        <BackgroundEffects variant="gradient" opacity="light" />
-        <div className="relative z-10">
+      <section className="py-6 sm:py-8">
+        <div>
           <ScrollReveal animation="fadeInUp" delay={550}>
             <Section id="contact" title="Let's Connect" subtitle="Multiple ways to get in touch with me.">
               <div className="rounded-3xl border border-zinc-200 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-8 shadow-xl dark:border-zinc-800 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 overflow-hidden relative">
@@ -375,8 +374,13 @@ export default function HomePage() {
                     <div className="space-y-5 text-sm">
                       <div>
                         <dt className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-2">Email</dt>
-                        <dd className="font-semibold text-zinc-900 dark:text-white break-all hover:text-blue-600 dark:hover:text-blue-400 transition">
-                          {profile.email}
+                        <dd>
+                          <a
+                            href={`mailto:${profile.email}`}
+                            className="font-semibold text-zinc-900 dark:text-white whitespace-nowrap hover:text-blue-600 dark:hover:text-blue-400 transition"
+                          >
+                            {profile.email}
+                          </a>
                         </dd>
                       </div>
                       <div>

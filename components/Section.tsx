@@ -15,9 +15,9 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={cn("py-16 sm:py-24 border-b border-zinc-100 dark:border-zinc-900", className)}>
+    <section id={id} className={cn("pt-4 pb-8 sm:pt-6 sm:pb-10", className)}>
       <Container>
-        <div className="mb-12 sm:mb-16">
+        <div className="mb-8 sm:mb-10">
           <div className="inline-block mb-4 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 rounded-full">
             <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
               {title.split(" ")[0]}
