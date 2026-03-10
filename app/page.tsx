@@ -17,7 +17,9 @@ import { Sparkles, Code, Zap, BookOpen, Brain, Cpu, Rocket, TrendingUp, ArrowRig
 import { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
-  const fullTypedName = "Durga Phani Teja Pasupuleti";
+  const firstNameLine = "Durga Phani Teja";
+  const surnameLine = "Pasupuleti";
+  const fullTypedName = `${firstNameLine} ${surnameLine}`;
   const [showWelcome, setShowWelcome] = useState(true);
   const [typedName, setTypedName] = useState("");
   const [isHeroInView, setIsHeroInView] = useState(true);
@@ -100,9 +102,12 @@ export default function HomePage() {
               </div>
 
               <div className="animate-fade-in-up">
-                <h1 className="pb-2 text-6xl sm:text-7xl font-sans font-bold tracking-tight leading-[1.15] bg-gradient-to-r from-zinc-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-text-gradient">
-                  {typedName}
-                  <span className="ml-1 inline-block animate-pulse">|</span>
+                <h1 className="pb-2 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-sans font-bold tracking-tight leading-[1.15] bg-gradient-to-r from-zinc-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-text-gradient">
+                  <span className="block">{typedName.slice(0, firstNameLine.length)}</span>
+                  <span className="block min-h-[1.15em]">
+                    {typedName.length > firstNameLine.length + 1 ? typedName.slice(firstNameLine.length + 1) : ""}
+                    <span className="ml-1 inline-block animate-pulse align-baseline">|</span>
+                  </span>
                 </h1>
               </div>
 
