@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oxanium:wght@700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -229,6 +229,144 @@
     }
   }
 
+  @keyframes welcomeReveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.9) translateY(8px);
+      letter-spacing: 0.08em;
+      filter: blur(2px);
+    }
+    55% {
+      opacity: 1;
+      transform: scale(1.03) translateY(0);
+      letter-spacing: 0.16em;
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      letter-spacing: 0.14em;
+      filter: blur(0);
+    }
+  }
+
+  @keyframes welcomeGlow {
+    0%, 100% {
+      text-shadow: 0 0 12px rgba(59, 130, 246, 0.35), 0 0 28px rgba(168, 85, 247, 0.25);
+    }
+    50% {
+      text-shadow: 0 0 22px rgba(59, 130, 246, 0.55), 0 0 44px rgba(236, 72, 153, 0.35);
+    }
+  }
+
+  @keyframes auroraShift {
+    0%, 100% {
+      transform: translate3d(-4%, -2%, 0) scale(1);
+      opacity: 0.45;
+    }
+    50% {
+      transform: translate3d(5%, 3%, 0) scale(1.08);
+      opacity: 0.75;
+    }
+  }
+
+  @keyframes blobDrift {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    35% {
+      transform: translate3d(18px, -14px, 0) scale(1.06);
+    }
+    70% {
+      transform: translate3d(-14px, 12px, 0) scale(0.96);
+    }
+  }
+
+  @keyframes dustFloat {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translateY(-12px) scale(1.1);
+      opacity: 0.55;
+    }
+  }
+
+  @keyframes techGridPan {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 140px 140px, 140px 140px; }
+  }
+
+  @keyframes techFlow {
+    0% { transform: translateX(-12%) scaleX(0.92); opacity: 0.15; }
+    50% { transform: translateX(0) scaleX(1); opacity: 0.45; }
+    100% { transform: translateX(12%) scaleX(0.92); opacity: 0.15; }
+  }
+
+  @keyframes meshShift {
+    0%, 100% {
+      transform: translate3d(-2%, -1%, 0) scale(1);
+      opacity: 0.35;
+    }
+    50% {
+      transform: translate3d(2%, 1%, 0) scale(1.03);
+      opacity: 0.55;
+    }
+  }
+
+  @keyframes networkSweep {
+    0% {
+      background-position: 0 0;
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.45;
+    }
+    100% {
+      background-position: 160px 0;
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes nodePulseSoft {
+    0%, 100% {
+      transform: scale(0.9);
+      opacity: 0.35;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes digitalGridDrift {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 0 150px, 140px 0; }
+  }
+
+  @keyframes digitalScanGlow {
+    0%, 100% {
+      opacity: 0.2;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes digitalPulse {
+    0%, 100% {
+      opacity: 0.25;
+      transform: scale(0.96);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.04);
+    }
+  }
+
   /* Animation classes */
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards !important;
@@ -290,6 +428,262 @@
 
   .animate-border-glow {
     animation: borderGlow 2s ease-in-out infinite;
+  }
+
+  .welcome-title {
+    font-family: "Oxanium", "Inter", "Segoe UI", sans-serif;
+    animation: welcomeReveal 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards, textGradient 4s ease infinite, welcomeGlow 2.2s ease-in-out infinite;
+    background-size: 200% 200%;
+    will-change: transform, opacity, letter-spacing;
+  }
+
+  .ai-welcome-stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.16), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.18), transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.16), transparent 44%),
+      linear-gradient(150deg, rgba(9, 9, 11, 0.98) 0%, rgba(24, 24, 27, 0.92) 45%, rgba(9, 9, 11, 0.98) 100%);
+  }
+
+  .welcome-aurora {
+    position: absolute;
+    inset: -20%;
+    background: conic-gradient(
+      from 40deg,
+      rgba(56, 189, 248, 0.2),
+      rgba(99, 102, 241, 0.15),
+      rgba(244, 114, 182, 0.2),
+      rgba(56, 189, 248, 0.2)
+    );
+    filter: blur(26px);
+    animation: auroraShift 8.5s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(10px);
+    animation: blobDrift 7s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-blob--one {
+    top: 16%;
+    left: 14%;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.28), transparent 68%);
+    animation-delay: 0.1s;
+  }
+
+  .welcome-blob--two {
+    right: 12%;
+    top: 18%;
+    width: 230px;
+    height: 230px;
+    background: radial-gradient(circle, rgba(196, 181, 253, 0.3), transparent 65%);
+    animation-delay: 0.7s;
+  }
+
+  .welcome-blob--three {
+    left: 34%;
+    bottom: 12%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.2), transparent 67%);
+    animation-delay: 1.1s;
+  }
+
+  .welcome-dust {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: rgba(191, 219, 254, 0.85);
+    box-shadow: 0 0 18px rgba(191, 219, 254, 0.5);
+    animation: dustFloat 3.4s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-dust--one { top: 24%; left: 28%; animation-delay: 0.2s; }
+  .welcome-dust--two { top: 30%; right: 29%; animation-delay: 0.9s; }
+  .welcome-dust--three { bottom: 28%; left: 24%; animation-delay: 1.4s; }
+  .welcome-dust--four { bottom: 24%; right: 23%; animation-delay: 2s; }
+
+  .welcome-tech-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.95) 35%, rgba(0, 0, 0, 0.55) 75%, transparent 100%);
+    animation: techGridPan 12s linear infinite;
+    opacity: 0.45;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-tech-flow {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), rgba(192, 132, 252, 0.8), transparent);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+    animation: techFlow 4.6s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-tech-flow--one { top: 32%; animation-delay: 0s; }
+  .welcome-tech-flow--two { top: 68%; animation-delay: 1.2s; }
+
+  .welcome-neural-mesh {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(120deg, rgba(59, 130, 246, 0.16), transparent 35%),
+      linear-gradient(300deg, rgba(168, 85, 247, 0.14), transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08), transparent 55%);
+    filter: blur(0.2px);
+    animation: meshShift 7.5s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-network-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        125deg,
+        transparent 0 18px,
+        rgba(125, 211, 252, 0.22) 18px 19px,
+        transparent 19px 42px
+      );
+    mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.92) 36%, rgba(0, 0, 0, 0.6) 78%, transparent 100%);
+    animation: networkSweep 9s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-node-soft {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: rgba(191, 219, 254, 0.9);
+    box-shadow: 0 0 18px rgba(125, 211, 252, 0.55);
+    animation: nodePulseSoft 2.8s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-node-soft--one { top: 22%; left: 22%; animation-delay: 0.3s; }
+  .welcome-node-soft--two { top: 26%; right: 24%; animation-delay: 1.1s; }
+  .welcome-node-soft--three { bottom: 24%; left: 27%; animation-delay: 1.7s; }
+  .welcome-node-soft--four { bottom: 21%; right: 22%; animation-delay: 2.2s; }
+
+  .welcome-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("/welcome-tech-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.32;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-photo-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(24, 24, 27, 0.55) 0%, rgba(9, 9, 11, 0.72) 60%, rgba(9, 9, 11, 0.86) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .welcome-digital-plane {
+    position: absolute;
+    left: -8%;
+    right: -8%;
+    bottom: -30%;
+    height: 62%;
+    transform: perspective(680px) rotateX(68deg);
+    transform-origin: center top;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 40%, transparent 100%);
+  }
+
+  .welcome-digital-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to bottom, rgba(56, 189, 248, 0.24) 1px, transparent 1px),
+      linear-gradient(to right, rgba(168, 85, 247, 0.22) 1px, transparent 1px);
+    background-size: 100% 38px, 46px 100%;
+    animation: digitalGridDrift 7.5s linear infinite;
+    box-shadow: inset 0 0 60px rgba(56, 189, 248, 0.22);
+  }
+
+  .welcome-digital-glow {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: 26%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.95), rgba(217, 70, 239, 0.9), transparent);
+    box-shadow: 0 0 28px rgba(56, 189, 248, 0.8);
+    animation: digitalScanGlow 3.2s ease-in-out infinite;
+  }
+
+  .welcome-digital-pulse {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(191, 219, 254, 1), rgba(125, 211, 252, 0.25));
+    box-shadow: 0 0 24px rgba(125, 211, 252, 0.85);
+    animation: digitalPulse 2.6s ease-in-out infinite;
+  }
+
+  .welcome-digital-pulse--one { left: 24%; top: 32%; animation-delay: 0.3s; }
+  .welcome-digital-pulse--two { left: 48%; top: 45%; animation-delay: 1.1s; }
+  .welcome-digital-pulse--three { left: 68%; top: 36%; animation-delay: 1.7s; }
+
+  @media (max-width: 640px) {
+    .welcome-blob--one,
+    .welcome-blob--two,
+    .welcome-blob--three {
+      width: 170px;
+      height: 170px;
+    }
+
+    .welcome-dust {
+      width: 5px;
+      height: 5px;
+    }
+
+    .welcome-digital-plane {
+      bottom: -24%;
+      height: 55%;
+      transform: perspective(560px) rotateX(68deg);
+    }
+
+    .welcome-digital-pulse {
+      width: 10px;
+      height: 10px;
+    }
   }
 
   /* Animation delays */

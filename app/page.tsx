@@ -64,20 +64,23 @@ export default function HomePage() {
   return (
     <main className="relative overflow-hidden bg-white dark:bg-zinc-950">
       {showWelcome && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/95 backdrop-blur-sm">
-          <div className="mx-4 max-w-xl rounded-2xl border border-zinc-800 bg-zinc-900/90 p-8 text-center shadow-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Welcome</p>
-            <h1 className="mt-3 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl animate-pulse">
-              {profile.name}
-            </h1>
-            <p className="mt-3 text-sm text-zinc-300">Loading your interactive portfolio pages...</p>
-            <button
-              type="button"
-              onClick={() => setShowWelcome(false)}
-              className="mt-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
-            >
-              Enter
-            </button>
+        <div className="fixed inset-0 z-[100] overflow-hidden bg-zinc-950/95 backdrop-blur-sm">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-zinc-900 dark:via-zinc-950 dark:to-zinc-900" />
+            <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-blue-200 opacity-30 blur-3xl animate-pulse dark:bg-blue-900 dark:opacity-10" />
+            <div className="absolute top-[30%] left-[10%] h-80 w-80 rounded-full bg-purple-200 opacity-25 blur-3xl animate-pulse dark:bg-purple-900 dark:opacity-10" />
+            <div className="absolute top-[60%] right-[15%] h-80 w-80 rounded-full bg-pink-200 opacity-20 blur-3xl animate-pulse dark:bg-pink-900 dark:opacity-5" />
+            <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-purple-200 opacity-30 blur-3xl animate-pulse dark:bg-purple-900 dark:opacity-10" />
+          </div>
+
+          <div className="relative z-10 flex h-full w-full items-center justify-center px-6 text-center">
+            <div className="w-full max-w-5xl">
+              <div className="mx-auto mb-8 h-px w-[78%] bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent blur-[0.5px]" />
+              <p className="welcome-title bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-6xl font-bold uppercase text-transparent sm:text-7xl md:text-8xl">
+                Welcome
+              </p>
+              <div className="mx-auto mt-8 h-px w-[78%] bg-gradient-to-r from-transparent via-fuchsia-300/75 to-transparent blur-[0.5px]" />
+            </div>
           </div>
         </div>
       )}
