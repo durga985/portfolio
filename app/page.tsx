@@ -10,10 +10,8 @@ import { AchievementsSection } from "@/components/AchievementsSection";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { StatCard } from "@/components/StatCard";
 import { ServiceCard } from "@/components/ServiceCard";
-import { CTACard } from "@/components/CTACard";
 import { Button } from "@/components/Button";
-import { TimelineItem } from "@/components/TimelineItem";
-import { Sparkles, Code, Zap, BookOpen, Brain, Cpu, Rocket, TrendingUp, ArrowRight, Github, Linkedin } from "lucide-react";
+import { Sparkles, Code, Zap, Brain, Cpu, Rocket, TrendingUp, Github, Linkedin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
@@ -100,7 +98,6 @@ export default function HomePage() {
             {/* Left side - Main content */}
             <div className="space-y-8">
               <div className="flex flex-wrap gap-2">
-                <Badge className="animate-bounce-in">{profile.location}</Badge>
                 <Badge className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 animate-bounce-in">{profile.headline}</Badge>
               </div>
 
@@ -176,7 +173,7 @@ export default function HomePage() {
                 <StatCard
                   icon={<Rocket size={20} />}
                   label="Products Shipped"
-                  value="4+"
+                  value="3+"
                   description="Production systems"
                 />
               </div>
@@ -316,39 +313,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section - Work Together */}
+      {/* CTA Section - Collaborate & Connect */}
       <section className="pt-2 pb-5 sm:pt-3 sm:pb-7">
         <div>
           <ScrollReveal animation="fadeInUp" delay={500}>
-            <Section title="Ready to Collaborate?" subtitle="Let's discuss your next project or opportunity.">
-              <div className="grid gap-6 lg:grid-cols-2">
-                <CTACard
-                  icon="🚀"
-                  title="Start a Project"
-                  description="Let's discuss how I can contribute to your next project or team."
-                  buttonText="Get In Touch"
-                  buttonHref={`mailto:${profile.email}`}
-                  variant="primary"
-                />
-                <CTACard
-                  icon="💼"
-                  title="Career Opportunities"
-                  description="Open to full-time positions, internships, or contract work in AI/DevOps."
-                  buttonText="View LinkedIn"
-                  buttonHref={`https://www.linkedin.com/in/${profile.linkedin}`}
-                  variant="gradient"
-                />
-              </div>
-            </Section>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-6 sm:py-8">
-        <div>
-          <ScrollReveal animation="fadeInUp" delay={550}>
-            <Section id="contact" title="Let's Connect" subtitle="Multiple ways to get in touch with me.">
+            <Section id="contact" title="Let's Work Together" subtitle="Let's discuss your next project or opportunity.">
               <div className="rounded-3xl border border-zinc-200 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-8 shadow-xl dark:border-zinc-800 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900 overflow-hidden relative">
                 {/* Animated background */}
                 <div className="absolute -top-40 right-0 h-80 w-80 bg-blue-400/10 blur-3xl rounded-full pointer-events-none animate-pulse" />
@@ -356,15 +325,11 @@ export default function HomePage() {
                 
                 <div className="relative z-10 grid gap-8 lg:grid-cols-3">
                   <div className="lg:col-span-2">
-                    <div className="flex items-center gap-3 mb-3">
-                      <BookOpen className="text-blue-600 dark:text-blue-400" size={28} />
-                      <h3 className="text-3xl font-bold text-zinc-900 dark:text-white">Let's Work Together</h3>
-                    </div>
                     <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                       I'm actively looking for full-time roles, internships, or freelance projects. Whether you're interested in collaboration, have questions about my work, or just want to chat—reach out! I'm excited to explore new opportunities and tackle challenging problems.
                     </p>
                     <div className="mt-8 flex flex-wrap gap-4">
-                      <Button href={`mailto:${profile.email}?subject=Let's%20Connect`} size="lg" variant="primary" icon={<Zap size={20} />}>
+                      <Button href={`mailto:${profile.email}?subject=Let's%20Collaborate`} size="lg" variant="primary" icon={<Zap size={20} />}>
                         Send Email
                       </Button>
                       <Button href={`https://www.linkedin.com/in/${profile.linkedin}`} size="lg" variant="secondary" external icon={<Linkedin size={20} />}>
@@ -389,12 +354,6 @@ export default function HomePage() {
                           >
                             {profile.email}
                           </a>
-                        </dd>
-                      </div>
-                      <div>
-                        <dt className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 uppercase tracking-wide mb-2">Phone</dt>
-                        <dd className="font-semibold text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition">
-                          {profile.phone}
                         </dd>
                       </div>
                       <div>

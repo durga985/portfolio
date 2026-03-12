@@ -8,7 +8,12 @@ import { profile } from "@/data/profile";
 export const metadata: Metadata = {
   title: `${profile.name} — Portfolio`,
   description: profile.summary,
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://durgaphaniteja.com"),
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: `${profile.name} — Portfolio`,
     description: profile.summary,
