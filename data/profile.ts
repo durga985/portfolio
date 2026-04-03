@@ -243,6 +243,7 @@ export const profile = {
     }
   ],
   "certifications": [
+    "AWS Certified Cloud Practitioner (CLF-C02)",
     "IBM BigInsights (IBM)",
     "Coursera Certified Developer for Python",
     "Coursera: Basics of Artificial Intelligence"
