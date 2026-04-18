@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 
 const projectImageFallback: Record<string, string> = {
+  "personal-portfolio-website": "/projects/portfolio-website.svg",
   "optimized-rag-enterprise-knowledge": "/projects/rag-system.svg",
   "ai-job-analyzer": "/projects/ai-job-analyzer.svg",
   "topic-modeling-text-mining": "/projects/topic-modeling.svg",
@@ -17,6 +18,7 @@ export function ProjectCard({
   tagline,
   image,
   stack,
+  github,
   className,
 }: {
   slug: string;
@@ -24,13 +26,17 @@ export function ProjectCard({
   tagline: string;
   image?: string;
   stack: readonly string[];
+  github?: string;
   className?: string;
 }) {
   const imageSrc = image || projectImageFallback[slug];
+  const href = github || `/projects/${slug}`;
+  const isExternal = !!github;
 
   return (
     <Link
-      href={`/projects/${slug}`}
+      href={href}
+      {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
       className={cn(
         "group block rounded-2xl border border-zinc-200 bg-gradient-to-br from-white to-zinc-50 p-6 shadow-sm-pro no-underline transition-all duration-500 hover:-translate-y-2 hover:shadow-lg-pro hover:border-zinc-300 dark:border-zinc-800 dark:from-zinc-950 dark:to-zinc-900 dark:hover:border-zinc-700 overflow-hidden relative",
         className

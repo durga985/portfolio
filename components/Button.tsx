@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   href?: string;
   external?: boolean;
+  download?: boolean | string;
   icon?: ReactNode;
   className?: string;
 }
@@ -17,6 +18,7 @@ export function Button({
   size = 'md',
   href,
   external = false,
+  download,
   icon,
   className = '',
   ...props
@@ -52,12 +54,16 @@ export function Button({
   );
 
   if (href) {
+    const anchorProps = props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
+
     return (
       <a
         href={href}
         target={external ? '_blank' : undefined}
         rel={external ? 'noopener noreferrer' : undefined}
+        download={download}
         className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
+        {...anchorProps}
       >
         {content}
       </a>

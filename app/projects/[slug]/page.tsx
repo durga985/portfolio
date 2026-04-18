@@ -4,7 +4,24 @@ import { profile } from "@/data/profile";
 import { Container } from "@/components/Container";
 import { Badge } from "@/components/Badge";
 
+function renderHighlightText(text: string) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (/^https?:\/\//.test(part)) {
+      return (
+        <a key={`${part}-${index}`} href={part} target="_blank" rel="noreferrer" className="underline hover:no-underline">
+          {part}
+        </a>
+      );
+    }
+    return <span key={`${part}-${index}`}>{part}</span>;
+  });
+}
+
 const projectImageFallback: Record<string, string> = {
+  "personal-portfolio-website": "/projects/portfolio-website.svg",
   "optimized-rag-enterprise-knowledge": "/projects/rag-system.svg",
   "ai-job-analyzer": "/projects/ai-job-analyzer.svg",
   "topic-modeling-text-mining": "/projects/topic-modeling.svg",
@@ -82,7 +99,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
             <h2 className="text-lg font-semibold">Highlights</h2>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-zinc-700 dark:text-zinc-200">
               {project.highlights.map((h) => (
-                <li key={h}>{h}</li>
+                <li key={h}>{renderHighlightText(h)}</li>
               ))}
             </ul>
           </div>

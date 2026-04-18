@@ -11,7 +11,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { StatCard } from "@/components/StatCard";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/Button";
-import { Sparkles, Code, Zap, Brain, Cpu, Rocket, TrendingUp, Github, Linkedin } from "lucide-react";
+import { Sparkles, Code, Zap, Brain, Cpu, Rocket, TrendingUp, Github, Linkedin, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
@@ -120,8 +120,8 @@ export default function HomePage() {
                 <Button href="#projects" size="lg" variant="primary" icon={<Sparkles size={20} />}>
                   View Projects
                 </Button>
-                <Button href={`mailto:${profile.email}`} size="lg" variant="secondary" icon={<Zap size={20} />}>
-                  Get in Touch
+                <Button href="/resume.pdf" download size="lg" variant="outline" icon={<Download size={20} />}>
+                  Download Resume
                 </Button>
               </div>
 
@@ -167,13 +167,13 @@ export default function HomePage() {
                 <StatCard
                   icon={<Code size={20} />}
                   label="Projects Completed"
-                  value="4+"
+                  value="6+"
                   description="Full-stack applications"
                 />
                 <StatCard
                   icon={<Rocket size={20} />}
                   label="Products Shipped"
-                  value="3+"
+                  value="4+"
                   description="Production systems"
                 />
               </div>

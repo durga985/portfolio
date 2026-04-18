@@ -149,6 +149,28 @@ export const profile = {
   ],
   "projects": [
     {
+      "slug": "personal-portfolio-website",
+      "name": "Personal Portfolio Website",
+      "tagline": "Next.js · TypeScript · Tailwind CSS · Static Export",
+      "image": "/projects/portfolio-website.svg",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "React"
+      ],
+      "highlights": [
+        "Designed and developed a responsive personal portfolio to showcase projects, skills, and professional experience.",
+        "Implemented dynamic project pages and filtering with a clean, modern UI using reusable React components.",
+        "Configured static export and deployment-ready build pipeline for fast performance and easy hosting."
+      ],
+      "links": {
+        "github": "https://github.com/durga985/portfolio.git",
+        "demo": "",
+        "writeup": ""
+      }
+    },
+    {
       "slug": "optimized-rag-enterprise-knowledge",
       "name": "Optimized Retrieval-Augmented Generation (RAG) System for Enterprise Knowledge Bases",
       "tagline": "Python · FAISS · LlamaIndex · HuggingFace · Sentence-Transformers · Cross-Encoder Reranking · Streamlit",
@@ -194,7 +216,7 @@ export const profile = {
         "Implemented keyword gap analysis to identify missing technical skills and enhance resume-job alignment."
       ],
       "links": {
-        "github": "",
+        "github": "https://github.com/durga985/AI-Job-analyzer",
         "demo": "",
         "writeup": ""
       }
@@ -240,13 +262,32 @@ export const profile = {
         "demo": "",
         "writeup": ""
       }
+    },
+    {
+      "slug": "data-collection-system-seeker",
+      "name": "Data Collection System - Seeker",
+      "tagline": "Data Collection · Workflow Automation · System Design",
+      "image": "/projects/data-collection-seeker.svg",
+      "stack": [
+        "Python",
+        "Automation",
+        "Data Engineering"
+      ],
+      "highlights": [
+        "Built a structured data collection workflow to gather and organize source data for downstream processing.",
+        "Focused on reliability and repeatability with clear collection stages and maintainable project structure.",
+        "Repository: https://github.com/2025-Fall-CS-515/data-collection-system-seeker.git"
+      ],
+      "links": {
+        "github": "https://github.com/2025-Fall-CS-515/data-collection-system-seeker.git",
+        "demo": "",
+        "writeup": ""
+      }
     }
   ],
   "certifications": [
     "AWS Certified Cloud Practitioner (CLF-C02)",
-    "IBM BigInsights (IBM)",
-    "Coursera Certified Developer for Python",
-    "Coursera: Basics of Artificial Intelligence"
+    "IBM BigInsights (IBM)"
   ],
   "achievements": [
     "Best Major Project \u2014 VR Siddhartha College competition (Vijayawada).",
