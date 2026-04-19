@@ -9,10 +9,15 @@ export const techIcons: Record<string, string> = {
   "NLP": "MessageSquare",
   "LLMs": "Brain",
   "PyTorch": "Zap",
+  "RAG": "Search",
+  "LangChain": "Workflow",
+  "LangGraph": "Workflow",
+  "Hugging Face": "Brain",
   "TensorFlow": "Zap",
   "n8n": "Zap",
   "Prompt Engineering": "MessageSquare",
   "scikit-learn": "Brain",
+  "Transformers": "Brain",
   "pandas": "Database",
   "numpy": "Zap",
   "Azure": "Cloud",
@@ -83,13 +88,15 @@ export const profile = {
       "Shell Scripting"
     ],
     "ML & AI": [
-      "Machine Learning",
-      "Deep Learning",
       "NLP",
       "LLMs",
       "PyTorch",
+      "RAG",
+      "LangChain",
+      "LangGraph",
+      "Hugging Face",
+      "Transformers",
       "TensorFlow",
-      "Prompt Engineering",
       "scikit-learn",
       "pandas",
       "numpy"
@@ -148,28 +155,6 @@ export const profile = {
     }
   ],
   "projects": [
-    {
-      "slug": "personal-portfolio-website",
-      "name": "Personal Portfolio Website",
-      "tagline": "Next.js · TypeScript · Tailwind CSS · Static Export",
-      "image": "/projects/portfolio-website.svg",
-      "stack": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "React"
-      ],
-      "highlights": [
-        "Designed and developed a responsive personal portfolio to showcase projects, skills, and professional experience.",
-        "Implemented dynamic project pages and filtering with a clean, modern UI using reusable React components.",
-        "Configured static export and deployment-ready build pipeline for fast performance and easy hosting."
-      ],
-      "links": {
-        "github": "https://github.com/durga985/portfolio.git",
-        "demo": "",
-        "writeup": ""
-      }
-    },
     {
       "slug": "optimized-rag-enterprise-knowledge",
       "name": "Optimized Retrieval-Augmented Generation (RAG) System for Enterprise Knowledge Bases",
@@ -280,6 +265,28 @@ export const profile = {
       ],
       "links": {
         "github": "https://github.com/2025-Fall-CS-515/data-collection-system-seeker.git",
+        "demo": "",
+        "writeup": ""
+      }
+    },
+    {
+      "slug": "personal-portfolio-website",
+      "name": "Personal Portfolio Website",
+      "tagline": "Next.js · TypeScript · Tailwind CSS · Static Export",
+      "image": "/projects/portfolio-website.svg",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "React"
+      ],
+      "highlights": [
+        "Designed and developed a responsive personal portfolio to showcase projects, skills, and professional experience.",
+        "Implemented dynamic project pages and filtering with a clean, modern UI using reusable React components.",
+        "Configured static export and deployment-ready build pipeline for fast performance and easy hosting."
+      ],
+      "links": {
+        "github": "https://github.com/durga985/portfolio.git",
         "demo": "",
         "writeup": ""
       }
